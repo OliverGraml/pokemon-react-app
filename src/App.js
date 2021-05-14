@@ -137,7 +137,12 @@ const CardWrapper = styled.article`
   gap: 0.5rem;
   padding: 1rem;
   margin: 1rem;
+<<<<<<< HEAD
 
+=======
+  text-align: center;
+    
+>>>>>>> refs/remotes/origin/main
   h3 {
     color: var(--primary);
     text-align: center;
