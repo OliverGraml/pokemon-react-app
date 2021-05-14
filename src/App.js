@@ -1,14 +1,17 @@
 import styled from 'styled-components/macro';
 import React, { useEffect, useState } from "react";
+import Pokeball from '../src/images/pokeball.svg';
 
 import Home from './Home';
 
 function App() {
 
   const [pokemons, setPokemons] = useState([]);
-  const [activePage, setActivePage] = useState("Home");
+  const [activePage, setActivePage] = useState("PokemonList");
+  const [filteredPokemons, setFilteredPokemons] = useState([]);
+
   const Home = () => <h2>Home</h2>;
-  const App = () => <h2>App</h2>;
+  const PokemonList = () => <h2>Pokemon Liste</h2>;
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
@@ -16,25 +19,35 @@ function App() {
     .then((data) => setPokemons(data.results));
   }, []);
 
+  function filterPokemons(filteredItems) {
+      const newList = pokemons.filter((pokemon) => pokemon.name !== filteredItems.name)
+      setFilteredPokemons(newList)
+      //console.log(newList)
+  }
+
   return <div>
     <Headline> Pokemon React App</Headline>
-       <section>
+    <Button onClick={() => setActivePage("Home")}>Home</Button>
+    <Button onClick={() => setActivePage("PokemonList")}>Pokemon Liste</Button>
        {activePage === "Home" ? (
           <Home />
        ) : (
-          
-       )}
-        <App />
-        
-    </section>
-
-    {pokemons.map((pokemon, index) => (
+       <>
+        <PokemonList />
+          {pokemons.map((pokemon, index) => (
      
-      <CardWrapper key={index}>
-        <h3>#{index+1} {pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1)}</h3>
+        <CardWrapper key={index}>
+          
+          <button onClick={() => filterPokemons(pokemon)}>
+            <img src={Pokeball} alt="Pokeball" width="30" height="30" /></button>
+          <h3>#{index+1} {pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1)}</h3>
          <img src={`https://pokeres.bastionbot.org/images/pokemon/${index+1}.png`} width="150"/>
-      </CardWrapper>
-    ))}
+        </CardWrapper>
+      ))}  </>
+    )}
+    
+    
+
   </div>;
 }
 
@@ -66,9 +79,21 @@ const CardWrapper = styled.article`
   text-align: center;
   };
 
+  button {
+  background-color: transparent;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  };
 `;
 
 const Button = styled.button`
   background-image: linear-gradient(#ff0f7b, #f89b29);
   border-radius: 2rem;
+  color: ivory;
+  font-weight: bold;
+  margin: 1rem;
+  padding: 0.5rem 0.8rem;
 `;
+
+

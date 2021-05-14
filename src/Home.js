@@ -9,7 +9,7 @@ import React, { useEffect, useState } from "react";
         <Headline> Pokemon React App</Headline>
         <section>
         <Home />
-        <App />
+    <p>Hallo</p>
     </section>
     </div>
     )
