@@ -73,6 +73,7 @@ const CardWrapper = styled.article`
   gap: 0.5rem;
   padding: 1rem;
   margin: 1rem;
+  text-align: center;
     
   h3 {
   color: var(--primary);
