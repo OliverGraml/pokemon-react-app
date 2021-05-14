@@ -9,7 +9,7 @@ function Home() {
       <Headline> Pokemon React App</Headline>
       <section>
         <Home />
-        <App />
+        <p>Hallo</p>
       </section>
     </div>
   );
