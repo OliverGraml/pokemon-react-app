@@ -19,8 +19,13 @@ function App() {
   return <div>
     <Headline> Pokemon React App</Headline>
        <section>
-        <Home />
+       {activePage === "Home" ? (
+          <Home />
+       ) : (
+          
+       )}
         <App />
+        
     </section>
 
     {pokemons.map((pokemon, index) => (
