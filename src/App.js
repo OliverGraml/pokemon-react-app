@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import React, {useEffect, useState, Component} from 'react';
+import React, { useEffect, useState, Component } from 'react';
 import Pokeball from '../src/images/pokeball.svg';
 
 //import HomePage from './Home';
@@ -41,6 +41,14 @@ function App() {
     console.log(pokemons, 1);
   }
 
+  function removeFromFavorites(newPokemon) {
+    const newList = filteredPokemons.filter(
+      (pokemon) => pokemon.id !== newPokemon.id
+    );
+
+    setFilteredPokemons(newList);
+  }
+
   /*   function renderNewPokemon() {
     return filteredPokemons.map((pokemon, index) => (
       <CardWrapper key={index}>
@@ -77,7 +85,7 @@ function App() {
           <Home />
           {filteredPokemons.map((pokemon, index) => (
             <CardWrapper key={index}>
-              <button>
+              <button onClick={() => removeFromFavorites(pokemon)}>
                 <img src={Pokeball} alt="Pokeball" width="30" height="30" />
               </button>
               <h3>
@@ -137,12 +145,8 @@ const CardWrapper = styled.article`
   gap: 0.5rem;
   padding: 1rem;
   margin: 1rem;
-<<<<<<< HEAD
-
-=======
   text-align: center;
-    
->>>>>>> refs/remotes/origin/main
+
   h3 {
     color: var(--primary);
     text-align: center;
