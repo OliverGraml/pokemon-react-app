@@ -9,8 +9,8 @@ function App() {
   const [activePage, setActivePage] = useState('PokemonList');
   const [filteredPokemons, setFilteredPokemons] = useState([]);
 
-  const Home = () => <h2>Home</h2>;
-  const PokemonList = () => <h2>Pokemon Liste</h2>;
+  const Home = () => <Headline2>Favorites</Headline2>;
+  const PokemonList = () => <Headline2>Pokemon Liste</Headline2>;
 
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
@@ -76,7 +76,7 @@ function App() {
   return (
     <div>
       <Headline> Pokemon React App</Headline>
-      <Button onClick={() => setActivePage('Home')}>Home</Button>
+      <Button onClick={() => setActivePage('Home')}>Favorites</Button>
       <Button onClick={() => setActivePage('PokemonList')}>
         Pokemon Liste
       </Button>
@@ -134,6 +134,12 @@ const Headline = styled.h1`
   border-radius: 3rem;
 `;
 
+const Headline2 = styled.h2`
+  color: #333;
+  font-family: fantasy;
+  text-align: center;
+`;
+
 const CardWrapper = styled.article`
   background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
   border: 1px solid black;
@@ -168,3 +174,4 @@ const Button = styled.button`
   margin: 1rem;
   padding: 0.5rem 0.8rem;
 `;
+
