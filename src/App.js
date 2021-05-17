@@ -76,9 +76,11 @@ function App() {
   return (
     <div>
       <Headline> Pokemon React App</Headline>
-      <Button onClick={() => setActivePage('Home')}>Favorites</Button>
       <Button onClick={() => setActivePage('PokemonList')}>
         Pokemon Liste
+      </Button>
+      <Button onClick={() => setActivePage('Home')}>
+        Favorites
       </Button>
       {activePage === 'Home' ? (
         <>
@@ -89,7 +91,8 @@ function App() {
                 <img src={Pokeball} alt="Pokeball" width="30" height="30" />
               </button>
               <h3>
-                #{pokemon.id} {pokemon.name}
+                #{index + 1}{' '}
+                {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
               </h3>
               <img
                 src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
@@ -107,7 +110,8 @@ function App() {
                 <img src={Pokeball} alt="Pokeball" width="30" height="30" />
               </button>
               <h3>
-                #{index + 1} {pokemon.name}
+                #{index + 1}{' '}
+                {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
               </h3>
               <img
                 src={`https://pokeres.bastionbot.org/images/pokemon/${
@@ -163,6 +167,11 @@ const CardWrapper = styled.article`
     border: none;
     border-radius: 2rem;
     cursor: pointer;
+  }
+
+  img{
+  :hover {
+    transform: scale(1.2)
   }
 `;
 
