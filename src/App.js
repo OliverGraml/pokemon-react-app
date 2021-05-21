@@ -1,15 +1,12 @@
 import styled from 'styled-components/macro';
 import React, {useEffect, useState, Component} from 'react';
-import Pokeball from '../src/images/pokeball.svg';
+import Favorites from './Favorites';
+import PokemonListe from './PokemonListe';
 //import HomePage from './Home';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
-  const [activePage, setActivePage] = useState('PokemonList');
   const [filteredPokemons, setFilteredPokemons] = useState([]);
-
-  const Home = () => <Headline2>Favorites</Headline2>;
-  const PokemonList = () => <Headline2>Pokemon Liste</Headline2>;
 
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
@@ -24,13 +21,11 @@ function App() {
       );
   }, []);
 
-
-  function filterPokemons(click, filteredItems) {
+  function filterPokemons(filteredItems) {
     const newList = pokemons.find(
       (pokemon) => pokemon.name === filteredItems.name
     );
     setFilteredPokemons([newList, ...filteredPokemons]);
-    //console.log(pokemons, 1);
   }
 
   function removeFromFavorites(newPokemon) {
@@ -44,53 +39,18 @@ function App() {
   return (
     <div>
       <Headline> Pokemon React App</Headline>
-      <Button onClick={() => setActivePage('PokemonList')}>
-        Pokemon Liste
-      </Button>
-      <Button onClick={() => setActivePage('Home')}>
-        Favorites
-      </Button>
-      {activePage === 'Home' ? (
-        <>
-          <Home />
-          {filteredPokemons.map((pokemon, index) => (
-            <CardWrapper key={index}>
-              <button onClick={() => removeFromFavorites(pokemon)}>
-                <img src={Pokeball} alt="Pokeball" width="30" height="30" />
-              </button>
-              <h3>
-                #{pokemon.id}{' '}
-                {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
-              </h3>
-              <img
-                src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
-                width="150"
-              />
-            </CardWrapper>
-          ))}{' '}
-        </>
-      ) : (
-        <>
-          <PokemonList />
-          {pokemons.map((pokemon, index) => (
-            <CardWrapper key={index}>
-              <button onClick={(click) => filterPokemons(click, pokemon)}>
-                <img src={Pokeball} alt="Pokeball" width="30" height="30" />
-              </button>
-              <h3>
-                #{index + 1}{' '}
-                {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
-              </h3>
-              <img
-                src={`https://pokeres.bastionbot.org/images/pokemon/${
-                  index + 1
-                }.png`}
-                width="150"
-              />
-            </CardWrapper>
-          ))}
-        </>
-      )}
+      <>
+        <Favorites
+          filteredPokemons={filteredPokemons}
+          onRemoveFromFavorites={() => removeFromFavorites()}
+        />
+      </>
+      <>
+        <PokemonListe
+          pokemons={pokemons}
+          onFilterPokemons={() => filterPokemons()}
+        />
+      </>
     </div>
   );
 }
@@ -137,9 +97,10 @@ const CardWrapper = styled.article`
     cursor: pointer;
   }
 
-  img{
-  :hover {
-    transform: scale(1.2)
+  img {
+    :hover {
+      transform: scale(1.2);
+    }
   }
 `;
 
