@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro';
 import React, {useEffect, useState, Component} from 'react';
-import Favorites from './Favorites';
-import PokemonListe from './PokemonListe';
+import Favorites from './pages/Favorites';
+import PokemonListe from './pages/PokemonListe';
 import {Switch, Route} from 'react-router-dom';
 import HeaderNavigation from './HeaderNavigation';
-import Home from './Home';
+import Home from './pages/Home';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
@@ -50,11 +50,11 @@ function App() {
             </div>
           </Route>
 
-          <Route path="/pokemon-liste">
+          <Route path="/pokemon-list">
             <div>
               <PokemonListe
                 pokemons={pokemons}
-                onFilterPokemons={() => filterPokemons()}
+                onFilterPokemons={filterPokemons}
               />
             </div>
           </Route>
@@ -63,7 +63,7 @@ function App() {
             <div>
               <Favorites
                 filteredPokemons={filteredPokemons}
-                onRemoveFromFavorites={() => removeFromFavorites()}
+                onRemoveFromFavorites={removeFromFavorites}
               />
             </div>
           </Route>

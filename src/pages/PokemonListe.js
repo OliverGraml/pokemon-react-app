@@ -1,22 +1,24 @@
 import styled from 'styled-components/macro';
-import Pokeball from '../src/images/pokeball.svg';
+import pokeball from '../images/pokeball.svg';
+import React, {useEffect, useState, Component} from 'react';
+import '../App';
 
-import './App';
-
-export default function Favorites({filteredPokemons, removeFromFavorites}) {
+export default function PokemonListe({pokemons, onFilterPokemons}) {
   return (
     <div>
-      {filteredPokemons.map((pokemon, index) => (
+      {pokemons.map((pokemon, index) => (
         <CardWrapper key={index}>
-          <button onClick={() => removeFromFavorites(pokemon)}>
-            <img src={Pokeball} alt="Pokeball" width="30" height="30" />
+          <button onClick={() => onFilterPokemons(pokemon)}>
+            <img src={pokeball} alt="Pokeball" width="30" height="30" />
           </button>
           <h3>
-            #{pokemon.id}{' '}
+            #{index + 1}{' '}
             {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
           </h3>
           <img
-            src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
+            src={`https://pokeres.bastionbot.org/images/pokemon/${
+              index + 1
+            }.png`}
             width="150"
           />
         </CardWrapper>
