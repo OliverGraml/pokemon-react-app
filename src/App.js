@@ -76,9 +76,11 @@ function App() {
   return (
     <div>
       <Headline> Pokemon React App</Headline>
-      <Button onClick={() => setActivePage('Home')}>Favorites</Button>
       <Button onClick={() => setActivePage('PokemonList')}>
         Pokemon Liste
+      </Button>
+      <Button onClick={() => setActivePage('Home')}>
+        Favorites
       </Button>
       {activePage === 'Home' ? (
         <>
@@ -89,7 +91,11 @@ function App() {
                 <img src={Pokeball} alt="Pokeball" width="30" height="30" />
               </button>
               <h3>
+<<<<<<< HEAD
                 #{pokemon.id}{' '}
+=======
+                #{index + 1}{' '}
+>>>>>>> 3c55f490fb6716c05a573aaf905c80db78b27b5a
                 {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
               </h3>
               <img
@@ -165,6 +171,11 @@ const CardWrapper = styled.article`
     border: none;
     border-radius: 2rem;
     cursor: pointer;
+  }
+
+  img{
+  :hover {
+    transform: scale(1.2)
   }
 `;
 
