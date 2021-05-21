@@ -1,7 +1,6 @@
 import styled from 'styled-components/macro';
 import React, {useEffect, useState, Component} from 'react';
 import Pokeball from '../src/images/pokeball.svg';
-
 //import HomePage from './Home';
 
 function App() {
@@ -25,20 +24,13 @@ function App() {
       );
   }, []);
 
-  /* useEffect(() => {
-	fetch(…).then((data)=> {
-    data.map(b => {
-      b.key = „“;
-    })
-    setPokemon({ data })
-}) */
 
   function filterPokemons(click, filteredItems) {
     const newList = pokemons.find(
       (pokemon) => pokemon.name === filteredItems.name
     );
     setFilteredPokemons([newList, ...filteredPokemons]);
-    console.log(pokemons, 1);
+    //console.log(pokemons, 1);
   }
 
   function removeFromFavorites(newPokemon) {
@@ -48,30 +40,6 @@ function App() {
 
     setFilteredPokemons(newList);
   }
-
-  /*   function renderNewPokemon() {
-    return filteredPokemons.map((pokemon, index) => (
-      <CardWrapper key={index}>
-        <button onClick={() => filterPokemons(pokemon)}>
-          <img src={Pokeball} alt="Pokeball" width="30" height="30" />
-        </button>
-        <h3>
-          #{index + 1}{' '}
-          {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
-        </h3>
-        <img
-          src={`https://pokeres.bastionbot.org/images/pokemon/${index + 1}.png`}
-          width="150"
-        />
-      </CardWrapper>
-    ));
-  } */
-
-  /* function changeUrl(pokemon, index) {
-    let count = index + 1;
-    pokemon.url = count;
-    console.log(typeof count);
-  } */
 
   return (
     <div>
