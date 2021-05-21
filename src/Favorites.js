@@ -1,5 +1,4 @@
 import styled from 'styled-components/macro';
-import React, {useEffect, useState, Component} from 'react';
 import Pokeball from '../src/images/pokeball.svg';
 
 import './App';
@@ -22,7 +21,6 @@ export default function Favorites({filteredPokemons, removeFromFavorites}) {
           />
         </CardWrapper>
       ))}
-      ;
     </div>
   );
 }

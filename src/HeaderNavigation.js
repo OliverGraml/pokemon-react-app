@@ -1,20 +1,37 @@
 import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 
-function HeaderNavigation() {
+export default function HeaderNavigation() {
   return (
-    <nav>
-      <NavLink exact to="/" className="link">
+    <Nav>
+      <NavLinkStyled exact to="/" className="link">
         Home
-      </NavLink>
-      <NavLink to="/pokemon-list" className="link">
+      </NavLinkStyled>
+      <NavLinkStyled to="/pokemon-list" className="link">
         Pokemon Liste
-      </NavLink>
-      <NavLink to="/favorites" className="link">
+      </NavLinkStyled>
+      <NavLinkStyled to="/favorites" className="link">
         Favorites
-      </NavLink>
-    </nav>
+      </NavLinkStyled>
+    </Nav>
   );
 }
 
-export default HeaderNavigation;
+const Nav = styled.nav`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const NavLinkStyled = styled(NavLink)`
+  display: inline-flex;
+  border: 1px solid red;
+  border-radius: 3rem;
+  padding: 6px 8px 4px 8px;
+  text-decoration: none;
+  background-image: linear-gradient(#ff0f7b, #f89b29);
+  color: var(--primary);
+  :hover {
+    background: transparent;
+    color: #ff0f7b;
+  }
+`;

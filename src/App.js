@@ -2,7 +2,9 @@ import styled from 'styled-components/macro';
 import React, {useEffect, useState, Component} from 'react';
 import Favorites from './Favorites';
 import PokemonListe from './PokemonListe';
-//import HomePage from './Home';
+import {Switch, Route} from 'react-router-dom';
+import HeaderNavigation from './HeaderNavigation';
+import Home from './Home';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
@@ -39,18 +41,34 @@ function App() {
   return (
     <div>
       <Headline> Pokemon React App</Headline>
-      <>
-        <Favorites
-          filteredPokemons={filteredPokemons}
-          onRemoveFromFavorites={() => removeFromFavorites()}
-        />
-      </>
-      <>
-        <PokemonListe
-          pokemons={pokemons}
-          onFilterPokemons={() => filterPokemons()}
-        />
-      </>
+      <HeaderNavigation />
+      <main>
+        <Switch>
+          <Route exact path="/">
+            <div>
+              <Home />
+            </div>
+          </Route>
+
+          <Route path="/pokemon-liste">
+            <div>
+              <PokemonListe
+                pokemons={pokemons}
+                onFilterPokemons={() => filterPokemons()}
+              />
+            </div>
+          </Route>
+
+          <Route path="/favorites">
+            <div>
+              <Favorites
+                filteredPokemons={filteredPokemons}
+                onRemoveFromFavorites={() => removeFromFavorites()}
+              />
+            </div>
+          </Route>
+        </Switch>
+      </main>
     </div>
   );
 }
