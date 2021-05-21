@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import React, { useEffect, useState, Component } from 'react';
+import React, {useEffect, useState, Component} from 'react';
 import Pokeball from '../src/images/pokeball.svg';
 
 //import HomePage from './Home';
@@ -89,7 +89,8 @@ function App() {
                 <img src={Pokeball} alt="Pokeball" width="30" height="30" />
               </button>
               <h3>
-                #{pokemon.id} {pokemon.name}
+                #{pokemon.id}{' '}
+                {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
               </h3>
               <img
                 src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
@@ -107,7 +108,8 @@ function App() {
                 <img src={Pokeball} alt="Pokeball" width="30" height="30" />
               </button>
               <h3>
-                #{index + 1} {pokemon.name}
+                #{index + 1}{' '}
+                {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
               </h3>
               <img
                 src={`https://pokeres.bastionbot.org/images/pokemon/${
@@ -174,4 +176,3 @@ const Button = styled.button`
   margin: 1rem;
   padding: 0.5rem 0.8rem;
 `;
-
