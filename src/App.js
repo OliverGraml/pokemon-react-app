@@ -90,12 +90,15 @@ function App() {
 
           <Route path="/pokemon-list">
             <div>
-              <input
+              <label>
+              <Input
+                placeholder="Type in your Pokemon"
                 type="text"
                 name="name"
                 onChange={filterListOfPokemons}
                 onKeyDown={resetState}
               />
+              </label>
               <PokemonListe
                 pokemons={pokemons}
                 onFilterPokemons={filterPokemons}
@@ -128,49 +131,11 @@ const Headline = styled.h1`
   border-radius: 3rem;
 `;
 
-const Headline2 = styled.h2`
-  color: #333;
-  font-family: fantasy;
-  text-align: center;
-`;
 
-const CardWrapper = styled.article`
-  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
-  border: 1px solid black;
-  border-radius: 1rem;
-  box-shadow: 1px 1px 9px #666;
-  color: ivory;
-  display: inline-block;
-  place-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  margin: 1rem;
-  text-align: center;
-
-  h3 {
-    color: var(--primary);
-    text-align: center;
-  }
-
-  button {
-    background-color: transparent;
-    border: none;
-    border-radius: 2rem;
-    cursor: pointer;
-  }
-
-  img {
-    :hover {
-      transform: scale(1.2);
-    }
-  }
-`;
-
-const Button = styled.button`
-  background-image: linear-gradient(#ff0f7b, #f89b29);
+const Input = styled.input`
   border-radius: 2rem;
-  color: ivory;
-  font-weight: bold;
+  color: #ff0f7b;
+  font-size: 16px;
   margin: 1rem;
   padding: 0.5rem 0.8rem;
 `;
