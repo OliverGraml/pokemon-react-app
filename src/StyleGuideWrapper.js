@@ -1,10 +1,10 @@
 // PROJECT_ROOT/src/StyleGuideWrapper.js 
 
-import GlobalStyles from './GlobalStyles';
+import GlobalStyle from './GlobalStyle';
 function StyleGuideWrapper({ children }) {
   return (
     <>
-      <GlobalStyles />
+      <GlobalStyle />
       {children}
     </>
   );

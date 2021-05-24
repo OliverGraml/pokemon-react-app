@@ -6,14 +6,29 @@ import {Switch, Route} from 'react-router-dom';
 import HeaderNavigation from './HeaderNavigation';
 import Home from './pages/Home';
 import {saveToLocal, loadFromLocal} from './lib/localStorage';
+import {filterListOfPokemons, resetState} from './Components/searchFunction';
+
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
-  const [list, setList] = useState([]);
+ 
   const [puffer, setPuffer] = useState([]);
   const [filteredPokemons, setFilteredPokemons] = useState(
     loadFromLocal('filteredPokemons') ?? []
   );
+
+  useEffect(() => {
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
+      .then((result) => result.json())
+      .then((data) =>
+        setPuffer(
+          data.results.map((item, index) => {
+            item.id = index + 1;
+            return item;
+          })
+        )
+      );
+  }, []);
 
   useEffect(() => {
     saveToLocal('filteredPokemons', filteredPokemons);
@@ -32,30 +47,9 @@ function App() {
       );
   }, []);
 
-  useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
-      .then((result) => result.json())
-      .then((data) =>
-        setPuffer(
-          data.results.map((item, index) => {
-            item.id = index + 1;
-            return item;
-          })
-        )
-      );
-  }, []);
+  
 
-  function filterListOfPokemons(event) {
-    const fieldInput = event.target.value;
-    const newList = pokemons
-      .slice()
-      .filter(
-        (pokemon) =>
-          pokemon.name.slice(0, fieldInput.length).toUpperCase() ===
-          fieldInput.toUpperCase()
-      );
-    setPokemons(newList);
-  }
+  
 
   function filterPokemons(filteredItems) {
     const newList = pokemons.find(
@@ -71,11 +65,7 @@ function App() {
 
     setFilteredPokemons(newList);
   }
-  function resetState(event) {
-    if (event.key === 'Backspace') {
-      setPokemons(puffer);
-    }
-  }
+  
   return (
     <div>
       <Headline> Pokemon React App</Headline>
@@ -95,8 +85,12 @@ function App() {
                 placeholder="Type in your Pokemon"
                 type="text"
                 name="name"
-                onChange={filterListOfPokemons}
-                onKeyDown={resetState}
+                onChange={(event) => {
+                  filterListOfPokemons(event, pokemons, setPokemons)}
+                }
+                onKeyDown={(event) => {
+                  resetState(event, puffer, setPokemons)}
+                }
               />
               </label>
               <PokemonListe
