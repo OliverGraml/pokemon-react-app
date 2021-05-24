@@ -12,13 +12,11 @@ export default function PokemonListe({pokemons, onFilterPokemons}) {
             <img src={pokeball} alt="Pokeball" width="30" height="30" />
           </button>
           <h3>
-            #{index + 1}{' '}
+            #{pokemon.id}{' '}
             {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
           </h3>
           <img
-            src={`https://pokeres.bastionbot.org/images/pokemon/${
-              index + 1
-            }.png`}
+            src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
             width="150"
           />
         </CardWrapper>
