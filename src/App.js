@@ -1,12 +1,12 @@
 import styled from 'styled-components/macro';
 import React, {useEffect, useState, Component} from 'react';
-import Favorites from './pages/Favorites';
+import Favorites from './components/Favorites';
 import PokemonListe from './pages/PokemonListe';
 import {Switch, Route} from 'react-router-dom';
-import HeaderNavigation from './HeaderNavigation';
+import HeaderNavigation from './components/HeaderNavigation';
 import Home from './pages/Home';
 import {saveToLocal, loadFromLocal} from './lib/localStorage';
-import {filterListOfPokemons, resetState} from './Components/searchFunction';
+import {filterListOfPokemons, resetState} from './lib/searchFunction';
 
 
 function App() {
